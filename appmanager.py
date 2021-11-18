@@ -50,6 +50,7 @@ class AppManager:
         y_pred = classifier.predict(X_test)
         acc = accuracy_score(y_test, y_pred)
         self.user_interface.write(f'Accuracy: {acc}')
+        self.user_interface.plot_dataset(dataset)
 
 
     def _setup_classification(self):
