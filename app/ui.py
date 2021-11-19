@@ -1,13 +1,12 @@
-import streamlit as st
 import classifier_config
 import dataset_config
-
 import matplotlib.pyplot as plt
+import streamlit as st
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn.decomposition import PCA
 
-class UserInterface:
 
+class UserInterface:
     def __init__(self):
         self.classifier_names = classifier_config.ClassifierNames
         self.dataset_names = dataset_config.DataseNames
@@ -15,8 +14,12 @@ class UserInterface:
 
     def _configure_ui(self):
         st.title("Interactive Machine Learning Webapp")
-        self.selected_classifier = st.sidebar.selectbox("Pick a Classifier", [x.value for x in self.classifier_names])
-        self.selected_dataset = st.sidebar.selectbox("Pick a Dataset", [x.value for x in self.dataset_names])
+        self.selected_classifier = st.sidebar.selectbox(
+            "Pick a Classifier", [x.value for x in self.classifier_names]
+        )
+        self.selected_dataset = st.sidebar.selectbox(
+            "Pick a Dataset", [x.value for x in self.dataset_names]
+        )
 
     def write(self, text):
         st.write(text)
@@ -84,7 +87,6 @@ class UserInterface:
     def add_lr_slider(self):
         self.lr_params_max_iter = st.sidebar.slider("max_iter", 1, 2000)
 
-
     @property
     def dataset(self):
         return self.selected_dataset
@@ -112,7 +114,3 @@ class UserInterface:
     @property
     def lr_max_iter(self):
         return self.lr_params_max_iter
-
-
-
-
