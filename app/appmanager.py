@@ -1,5 +1,5 @@
-from app import classifier_config
-from app import dataset_config
+import classifier_config
+import dataset_config
 from sklearn import datasets, tree
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
@@ -9,7 +9,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 
-from app import ui
+import ui
 
 
 class AppManager:

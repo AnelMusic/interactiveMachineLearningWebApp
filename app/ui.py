@@ -1,5 +1,5 @@
-from app import classifier_config
-from app import dataset_config
+import classifier_config
+import dataset_config
 import matplotlib.pyplot as plt
 import streamlit as st
 from mpl_toolkits.mplot3d import Axes3D

@@ -1,4 +1,4 @@
-from app import appmanager
+import appmanager
 
 
 def main():
