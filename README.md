@@ -43,7 +43,7 @@ mlapp streamlit
 <br/>
 
 
-#### Helpful Makefile Commands
+## Helpful Makefile Commands
 ##### Remove not needed files:
 ```bash
 make clean
@@ -55,7 +55,8 @@ make style
 <br/>
 <br/>
 
-#### Fell free to connect:
+
+## Fell free to connect:
 Anel Music– [@LinkedIn](https://www.linkedin.com/in/anelmusic/) – anel.music@web.de
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
