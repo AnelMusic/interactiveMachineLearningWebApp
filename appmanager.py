@@ -9,6 +9,9 @@ from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+from sklearn.naive_bayes import GaussianNB
+from sklearn.linear_model import LogisticRegression
+from sklearn import tree
 
 
 class AppManager:
@@ -40,6 +43,13 @@ class AppManager:
             self.user_interface.add_rf_slider()
             cls = RandomForestClassifier(n_estimators= self.user_interface.rf_n_estimators,
                                           max_depth= self.user_interface.rf_max_depth)
+        elif self.user_interface.classifier == classifier_config.ClassifierNames.NB.value:
+            cls = GaussianNB()
+        elif self.user_interface.classifier == classifier_config.ClassifierNames.DT.value:
+            cls = tree.DecisionTreeClassifier(random_state = 1)
+        elif self.user_interface.classifier == classifier_config.ClassifierNames.LR.value:
+            self.user_interface.add_lr_slider()
+            cls = LogisticRegression(max_iter=self.user_interface.lr_max_iter)
         return cls
 
     def _train_classifier(self, classifier, dataset):
@@ -49,8 +59,11 @@ class AppManager:
         classifier.fit(X_train, y_train)
         y_pred = classifier.predict(X_test)
         acc = accuracy_score(y_test, y_pred)
-        self.user_interface.write(f'Accuracy: {acc}')
-        self.user_interface.plot_dataset(dataset)
+
+        self.user_interface.write_sidebar(f'Accuracy: {acc}')
+
+    def _plot_dataset(self, dataset, label_x, label_y):
+        self.user_interface.plot_dataset(dataset, label_x, label_y)
 
 
     def _setup_classification(self):
@@ -59,6 +72,7 @@ class AppManager:
             ds = self._load_dataset()
             cls = self._load_classifier()
             self._train_classifier(cls, ds)
+            self._plot_dataset(ds, "Principal Component 1", "Principal Component 2")
 
 
 

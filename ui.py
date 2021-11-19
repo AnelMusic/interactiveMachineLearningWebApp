@@ -23,30 +23,33 @@ class UserInterface:
     def write(self, text):
         st.write(text)
 
-    def plot_dataset(self, ds):
-        X = ds.data[:, :2]  # we only take the first two features.
-        y = ds.target
+    def write_sidebar(self, text):
+        st.sidebar.write(text)
 
-        x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5
-        y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5
-
-        fig = plt.figure(2, figsize=(8, 6))
-        plt.clf()
-
-        # Plot the training points
-        plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Set1, edgecolor="k")
-        plt.xlabel("Sepal length")
-        plt.ylabel("Sepal width")
-
-        plt.xlim(x_min, x_max)
-        plt.ylim(y_min, y_max)
-        plt.xticks(())
-        plt.yticks(())
-        st.pyplot(fig)
-
+    def _plot_dataset_2D(self, ds, x_label, y_label):
         # To getter a better understanding of interaction of the dimensions
         # plot the first three PCA dimensions
-        fig2 = plt.figure(1, figsize=(8, 6))
+        y = ds.target
+        fig1 = plt.figure(1, figsize=(8, 6))
+        X_reduced = PCA(n_components=2).fit_transform(ds.data)
+        plt.scatter(
+            X_reduced[:, 0],
+            X_reduced[:, 1],
+            c=y,
+            cmap="viridis",
+            s=40,
+        )
+        plt.title("PCA")
+        plt.xlabel(x_label)
+        plt.ylabel(y_label)
+        plt.colorbar()
+        st.pyplot(fig1)
+
+    def _plot_dataset_3D(self, ds):
+        # To getter a better understanding of interaction of the dimensions
+        # plot the first three PCA dimensions
+        y = ds.target
+        fig2 = plt.figure(2, figsize=(8, 6))
         ax = Axes3D(fig2, elev=-160, azim=120)
         X_reduced = PCA(n_components=3).fit_transform(ds.data)
         ax.scatter(
@@ -54,7 +57,7 @@ class UserInterface:
             X_reduced[:, 1],
             X_reduced[:, 2],
             c=y,
-            cmap=plt.cm.Set1,
+            cmap="viridis",
             edgecolor="k",
             s=40,
         )
@@ -68,6 +71,10 @@ class UserInterface:
 
         st.pyplot(fig2)
 
+    def plot_dataset(self, ds, x_label, y_label):
+        self._plot_dataset_2D(ds, x_label, y_label)
+        self._plot_dataset_3D(ds)
+
     def add_knn_slider(self):
         self.knn_params_k = st.sidebar.slider("k", 1, 15)
 
@@ -77,6 +84,9 @@ class UserInterface:
     def add_rf_slider(self):
         self.rf_params_n_estimators = st.sidebar.slider("n_estimators", 1, 100)
         self.rf_params_max_depth = st.sidebar.slider("max_depth", 2, 15)
+
+    def add_lr_slider(self):
+        self.lr_params_max_iter = st.sidebar.slider("max_iter", 1, 2000)
 
 
     @property
@@ -102,5 +112,11 @@ class UserInterface:
     @property
     def rf_max_depth(self):
         return self.rf_params_max_depth
+
+    @property
+    def lr_max_iter(self):
+        return self.lr_params_max_iter
+
+
 
 
