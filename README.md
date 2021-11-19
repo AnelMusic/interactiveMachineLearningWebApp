@@ -52,5 +52,12 @@ make clean
 ```bash
 make style
 ```
+<br/>
+<br/>
 
 
+Anel Music– [@LinkedIn](https://www.linkedin.com/in/anelmusic/) – anel.music@web.de
+
+Distributed under the MIT license. See ``LICENSE`` for more information.
+
+[https://github.com/AnelMusic/](https://github.com/AnelMusic/)
