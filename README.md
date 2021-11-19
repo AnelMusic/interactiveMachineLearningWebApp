@@ -1,5 +1,5 @@
 ## What is this project about?
-In this project, an interactive web application is provided that allow the user to select a dataset and a classifier. 
+In this project, an interactive web application is deployed that allow the user to select a dataset and a classifier. 
 The parameters of the classifiers can be changed freely.
 
 ## Run already deployed Webapp:
