@@ -3,8 +3,7 @@ In this project, an interactive web application is deployed that allow the user 
 The parameters of the classifiers can be changed freely.
 
 ## Demo:
-https://user-images.githubusercontent.com/32487291/142690799-04f1abba-7c24-406e-bfb5-c48e8a01e301.mp4
-
+![webapp_demo](https://user-images.githubusercontent.com/32487291/142691293-3c2e3bb5-2bb7-4245-993c-1de268000a18.gif)
 
 ## Try it out yourself:
 Launch App in Browser: [Start App](https://share.streamlit.io/anelmusic/interactivemachinelearningwebapp/main/app/main.py)
