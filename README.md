@@ -1,8 +1,8 @@
-### What is this project about?
+## What is this project about?
 In this project, an interactive web application is provided that allow the user to select a dataset and a classifier. 
 The parameters of the classifiers can be changed freely.
 
-##### Run already deployed Webapp:
+## Run already deployed Webapp:
 Launch App in Browser: [Start App](https://share.streamlit.io/anelmusic/interactivemachinelearningwebapp/main/app/main.py)
 
 
