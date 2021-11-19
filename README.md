@@ -2,7 +2,11 @@
 In this project, an interactive web application is deployed that allow the user to select a dataset and a classifier. 
 The parameters of the classifiers can be changed freely.
 
-## Run already deployed Webapp:
+## Demo:
+https://user-images.githubusercontent.com/32487291/142690799-04f1abba-7c24-406e-bfb5-c48e8a01e301.mp4
+
+
+## Try it out yourself:
 Launch App in Browser: [Start App](https://share.streamlit.io/anelmusic/interactivemachinelearningwebapp/main/app/main.py)
 
 
