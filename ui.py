@@ -11,12 +11,10 @@ class UserInterface:
     def __init__(self):
         self.classifier_names = classifier_config.ClassifierNames
         self.dataset_names = dataset_config.DataseNames
-
         self._configure_ui()
 
     def _configure_ui(self):
         st.title("Interactive Machine Learning Webapp")
-
         self.selected_classifier = st.sidebar.selectbox("Pick a Classifier", [x.value for x in self.classifier_names])
         self.selected_dataset = st.sidebar.selectbox("Pick a Dataset", [x.value for x in self.dataset_names])
 
@@ -26,9 +24,7 @@ class UserInterface:
     def write_sidebar(self, text):
         st.sidebar.write(text)
 
-    def _plot_dataset_2D(self, ds, x_label, y_label):
-        # To getter a better understanding of interaction of the dimensions
-        # plot the first three PCA dimensions
+    def _plot_dataset_2D_PCA(self, ds, x_label, y_label):
         y = ds.target
         fig1 = plt.figure(1, figsize=(8, 6))
         X_reduced = PCA(n_components=2).fit_transform(ds.data)
@@ -45,7 +41,7 @@ class UserInterface:
         plt.colorbar()
         st.pyplot(fig1)
 
-    def _plot_dataset_3D(self, ds):
+    def _plot_dataset_3D_PCA(self, ds):
         # To getter a better understanding of interaction of the dimensions
         # plot the first three PCA dimensions
         y = ds.target
@@ -72,8 +68,8 @@ class UserInterface:
         st.pyplot(fig2)
 
     def plot_dataset(self, ds, x_label, y_label):
-        self._plot_dataset_2D(ds, x_label, y_label)
-        self._plot_dataset_3D(ds)
+        self._plot_dataset_2D_PCA(ds, x_label, y_label)
+        self._plot_dataset_3D_PCA(ds)
 
     def add_knn_slider(self):
         self.knn_params_k = st.sidebar.slider("k", 1, 15)

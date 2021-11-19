@@ -17,7 +17,11 @@ from sklearn import tree
 class AppManager:
     def __init__(self):
         self.user_interface = ui.UserInterface()
-        self._setup_classification()
+        self._run_app()
+
+    def _run_app(self):
+        accuracy, ds = self._setup_classification()
+        self._update_ui(accuracy, ds)
 
     def _load_dataset(self):
         ds = None
@@ -27,6 +31,8 @@ class AppManager:
             ds = datasets.load_breast_cancer()
         elif self.user_interface.dataset == dataset_config.DataseNames.WINE.value:
             ds = datasets.load_wine()
+        elif self.user_interface.dataset == dataset_config.DataseNames.DIABETES.value:
+            ds = datasets.load_diabetes()
         return ds
 
     def _load_classifier(self):
@@ -59,11 +65,17 @@ class AppManager:
         classifier.fit(X_train, y_train)
         y_pred = classifier.predict(X_test)
         acc = accuracy_score(y_test, y_pred)
-
-        self.user_interface.write_sidebar(f'Accuracy: {acc}')
+        return acc
 
     def _plot_dataset(self, dataset, label_x, label_y):
         self.user_interface.plot_dataset(dataset, label_x, label_y)
+
+    def _update_ui(self, accuracy, dataset):
+        self.user_interface.write_sidebar('### Accuracy:')
+        self.user_interface.write_sidebar(f'{accuracy}')
+        self._plot_dataset(dataset, "Principal Component 1", "Principal Component 2")
+        self.user_interface.write_sidebar('### Dataset Shape:')
+        self.user_interface.write_sidebar(f'{dataset.data.shape}')
 
 
     def _setup_classification(self):
@@ -71,8 +83,5 @@ class AppManager:
             print(self.user_interface.classifier)
             ds = self._load_dataset()
             cls = self._load_classifier()
-            self._train_classifier(cls, ds)
-            self._plot_dataset(ds, "Principal Component 1", "Principal Component 2")
-
-
-
+            acc = self._train_classifier(cls, ds)
+            return acc, ds
