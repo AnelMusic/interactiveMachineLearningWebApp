@@ -46,7 +46,7 @@ make clean
 make style
 ```
 ##### Run already deployed Webapp:
-```bash
+```
 Launch App in Browser: [Start App](https://share.streamlit.io/anelmusic/interactivemachinelearningwebapp/main/app/main.py)
 ```
 
