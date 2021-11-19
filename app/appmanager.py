@@ -1,5 +1,5 @@
-import classifier_config
-import dataset_config
+from app import classifier_config
+from app import dataset_config
 from sklearn import datasets, tree
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
@@ -13,11 +13,8 @@ from app import ui
 
 
 class AppManager:
-    def __init__(self):
+    def run_app(self):
         self.user_interface = ui.UserInterface()
-        self._run_app()
-
-    def _run_app(self):
         accuracy, ds = self._setup_classification()
         self._update_ui(accuracy, ds)
 
