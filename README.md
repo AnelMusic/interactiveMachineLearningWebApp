@@ -38,7 +38,7 @@ dvc pull
 ```bash
 mlapp streamlit
 ```
-
+</br>
 #### Helpful Makefile Commands
 ##### Remove not needed files:
 ```bash
